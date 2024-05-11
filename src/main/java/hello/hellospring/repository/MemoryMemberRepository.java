@@ -1,12 +1,14 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 
 
 // MemberRepository 인터페이스를 구현하는 MemoryMemberRepository 클래스
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // Map을 사용하여 데이터를 저장하는 저장소

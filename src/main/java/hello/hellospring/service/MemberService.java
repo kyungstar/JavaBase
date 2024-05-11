@@ -4,10 +4,30 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+// 순수 자바 클래스
+
+/**
+ 스프링 빈을 등록하는 2가지 방법
+ 1. 컴포넌트 스캔과 자동 의존관계 설정
+ 2. 자바 코드로 직접 스프링 빈 등록하기
+
+ 컴포넌트 스캔 원리
+ `@Component` 애노테이션이 있으면 스프링 빈으로 자동 등록된다.
+
+ - `@Component` 를 포함하는 다음 애노테이션도 스프링 빈으로 자동 등록된다.
+ - `@Controller`
+ - `@Service`
+ - `@Repository`
+
+ */
+@Service
 public class MemberService {
 
 
@@ -18,6 +38,7 @@ public class MemberService {
     // 이것은 코드의 유연성과 테스트 용이성을 높여줍니다.
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
