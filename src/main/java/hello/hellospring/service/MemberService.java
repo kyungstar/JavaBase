@@ -37,7 +37,8 @@ public class MemberService {
     // new MemoryMemberRepository() : MemberService 클래스가 MemberRepository 인터페이스의 구현체에 종속되지 않고, 인터페이스에 대한 참조를 가지고 있으며 실행 시에 어떤 구현 클래스를 사용할 지 결정할 수 있게 합니다.
     // 이것은 코드의 유연성과 테스트 용이성을 높여줍니다.
     private final MemberRepository memberRepository;
-    
+
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
