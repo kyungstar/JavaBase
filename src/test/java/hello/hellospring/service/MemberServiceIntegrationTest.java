@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +23,7 @@ class MemberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
+    @Commit
     public void 회원가입() throws Exception {
 
         //Given
@@ -33,7 +35,7 @@ class MemberServiceIntegrationTest {
 
         //Then
         Member findMember = memberRepository.findById(saveId).get();
-        assertEquals(member.getName(), findMember.getName());
+        assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
     @Test
@@ -42,9 +44,9 @@ class MemberServiceIntegrationTest {
 
         //Given
         Member member1 = new Member();
-        member1.setName("spring2");
+        member1.setName("spring3");
         Member member2 = new Member();
-        member2.setName("spring2");
+        member2.setName("spring3");
 
         //When
         memberService.join(member1);
