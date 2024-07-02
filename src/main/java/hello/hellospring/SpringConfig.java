@@ -28,29 +28,24 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    // 데이터베이스 연결을 위한 DataSource 객체입니다.
-    private EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
-
-
-    // @Autowired : 스프링의 의존성 주입을 위한 어노테이션입니다. 생성자나 필드, 메서드에 붙여서 스프링이 자동으로 빈을 주입하도록 합니다.
-    // 이 생성자는 스프링이 DataSource 빈을 자동으로 주입하도록 합니다. 생성자 주입 방식으로 DataSource를 SpringConfig 클래스에 주입합니다.
-
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
+
+    /*@Bean
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository(dataSource);
         // return new JdbcMemberRepository(dataSource);
         // return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+        // return new JpaMemberRepository(em);
+    }*/
 }
